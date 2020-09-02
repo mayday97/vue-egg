@@ -5,18 +5,23 @@ class UserController extends BaseController{
         const {ctx}=this
         // console.log(this.ctx.query);
         try{
-            setTimeout(() => {
-                this.success({
-                    user_name:'xy',
-                    user_age:23,
-                    sex:'male'
-                })
-            }, 1000);
+            // setTimeout(() => {
+            //     this.success({
+            //         user_name:'xy',
+            //         user_age:23,
+            //         sex:'male'
+            //     })
+            // }, 1000);
             // this.success({
             //     user_name:'xy',
             //     user_age:23,
             //     sex:'male'
             // })
+            const userInfo=await this.app.mysql.get('user', {id:1});
+            console.log(userInfo);
+            this.success({
+                ...userInfo
+            })
             return true
         }catch(error){
             console.log(error);
@@ -28,9 +33,7 @@ class UserController extends BaseController{
     async editInfo(){
         const {ctx}=this
         const ret=ctx.request.body 
-        try{
-            this.success('成功')
-        }catch{}
+        this.success('成功')
         
     }
 }
