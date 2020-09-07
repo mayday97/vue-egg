@@ -14,11 +14,11 @@ class BaseController extends Controller {
         }
     }
 
-    error(){
+    error(msg){
         this.ctx.body={
             code:0,
             data:null,
-            msg:"失败"
+            msg:msg
         }
     }
 
