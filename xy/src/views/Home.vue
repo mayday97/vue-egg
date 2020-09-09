@@ -65,25 +65,29 @@ export default {
       asideMenu: [
         {
           id: "1",
-          title: "导航一",
+          title: "控制台",
+        },
+        {
+          id: "2",
+          title: "用户管理",
           child: [
             {
-              id: "1-1",
+              id: "2-1",
               title: "分组一",
               child: [
-                { id: "1-1-1", title: "选项一" },
-                { id: "1-1-2", title: "选项二" },
+                { id: "2-1-1", title: "选项一" },
+                { id: "2-1-2", title: "选项二" },
               ],
             },
             {
-              id: "1-2",
+              id: "2-2",
               title: "分组二",
             },
           ],
         },
 
         {
-          id: "2",
+          id: "3",
           title: "导航二",
         },
       ],
@@ -105,7 +109,7 @@ export default {
     min-height: 100vh;
   }
   .el-header {
-    background-color: #030918;
+    background-color: #132237;
   }
   .el-aside {
     background-color: #1c2b36;
