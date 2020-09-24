@@ -1,19 +1,19 @@
 /* eslint valid-jsdoc: "off" */
 
-'use strict';
+"use strict";
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
-module.exports = appInfo => {
+module.exports = (appInfo) => {
   /**
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
-  const config = exports = {};
+  const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1598693067035_5639';
+  config.keys = appInfo.name + "_1598693067035_5639";
 
   // add your middleware config here
   config.middleware = [];
@@ -23,7 +23,6 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
-  
   config.security = {
     csrf: {
       enable: false, //必须加 否则： 403 Forbidden message: "missing csrf token"
@@ -33,8 +32,8 @@ module.exports = appInfo => {
   };
   // 跨域
   config.cors = {
-    origin:'*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+    origin: "*",
+    allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH",
   };
 
   // config.cluster = {
@@ -45,23 +44,23 @@ module.exports = appInfo => {
   //     }
   // };
 
-  config.mysql ={
+  config.mysql = {
     client: {
       // host
-      host: 'localhost',
+      host: "localhost",
       // 端口号
-      port: '3306',
+      port: "3306",
       // 用户名
-      user: 'root',
+      user: "root",
       // 密码
-      password: 'yjwmysql3306',
+      password: "yjwmysql3306",
       // 数据库名
-      database: 'test01',
+      database: "test01",
     },
     // 是否加载到 app 上，默认开启
     app: true,
     // 是否加载到 agent 上，默认关闭
-    agent: false
+    agent: false,
   };
 
   return {
