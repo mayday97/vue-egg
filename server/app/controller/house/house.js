@@ -15,7 +15,13 @@ class HouseController extends BaseController {
    */
   async addHouse() {
     const { ctx, service } = this;
-    const ret = service.house.addHouse(ctx.query);
+
+    const ret = await ctx.service.house.house.addHouse(ctx.request.body);
+    if (ret) {
+      this.success({ id: 1, title: "测试" });
+    } else {
+      // this.success({ id: 1, title: "测试" });
+    }
   }
 }
 

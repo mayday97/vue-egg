@@ -17,7 +17,14 @@ class HouseService extends Service {
    * 添加房产
    */
 
-  async addHouse() {}
+  async addHouse(params) {
+    const result = await this.app.mysql.insert("house", { title: params.name });
+    if (result.affectedRows === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 module.exports = HouseService;
