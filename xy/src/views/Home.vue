@@ -3,7 +3,7 @@
     <el-container>
       <el-header class="header">
         <div class="brand">
-          <span>八戒</span>
+          <span>小鱼</span>
         </div>
         <div class="header-main">
           <div class="menu-icon" @click="showAside = !showAside">
@@ -11,9 +11,9 @@
           </div>
         </div>
       </el-header>
-      <el-container>
+      <el-container class="my-main">
         <el-aside width="200px" class="aside-nav">
-          <el-menu default-active="1-2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#1c2b36" text-color="#fff" active-text-color="#ffd04b">
+          <el-menu router default-active="control" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#1c2b36" text-color="#fff" active-text-color="#ffd04b">
             <template v-for="fnav in asideMenu">
               <!-- 有子级 -->
               <el-submenu v-if="fnav.child" :key="fnav.id" :index="fnav.id">
@@ -66,11 +66,11 @@ export default {
 
       asideMenu: [
         {
-          id: "1",
+          id: "control",
           title: "控制台",
         },
         {
-          id: "2",
+          id: "user",
           title: "用户管理",
           child: [
             {
@@ -89,8 +89,8 @@ export default {
         },
 
         {
-          id: "3",
-          title: "导航二",
+          id: "/house/list",
+          title: "房产管理",
         },
       ],
     };
@@ -108,7 +108,7 @@ export default {
 .home {
   background-color: #f5f5f5;
   .el-container {
-    min-height: 100vh;
+    height: 100vh;
   }
   .el-header {
     background-color: #132237;
@@ -119,6 +119,7 @@ export default {
 
   .header {
     display: flex;
+
     .brand {
       width: 180px;
       padding-right: 20px;
@@ -135,8 +136,8 @@ export default {
       }
     }
   }
-
-  // .aside-nav {
-  // }
+  .my-main {
+    height: calc(100vh - 60px);
+  }
 }
 </style>

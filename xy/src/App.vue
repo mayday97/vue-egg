@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -9,5 +9,7 @@
   font-size: 14px;
   line-height: 1.5;
 }
-
+div {
+  box-sizing: border-box;
+}
 </style>

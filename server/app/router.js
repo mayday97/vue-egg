@@ -10,6 +10,7 @@ const app = (app) => {
   router.get("/api/user/info", controller.user.userInfo);
   router.post("/api/user/edit", controller.user.editInfo);
   router.post("/api/user/login", controller.user.login);
+  router.post("/api/house/list", controller.house.house.getList);
   router.post("/api/house/add", controller.house.house.addHouse);
 };
 

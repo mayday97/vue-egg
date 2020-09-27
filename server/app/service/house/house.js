@@ -18,7 +18,7 @@ class HouseService extends Service {
    */
 
   async addHouse(params) {
-    const result = await this.app.mysql.insert("house", { title: params.name });
+    const result = await this.app.mysql.insert("house", { title: params.title, region: params.region, address: params.address, area: params.area });
     if (result.affectedRows === 1) {
       return true;
     } else {
