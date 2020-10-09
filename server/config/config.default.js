@@ -63,6 +63,10 @@ module.exports = (appInfo) => {
     agent: false,
   };
 
+  config.multipart = {
+    mode: "file",
+  };
+
   return {
     ...config,
     ...userConfig,

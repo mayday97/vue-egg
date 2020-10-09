@@ -7,6 +7,7 @@
 const app = (app) => {
   const { router, controller } = app;
   router.get("/", controller.home.index);
+  router.post("/api/commom/upload", controller.commom.upload.uploadFile);
   router.get("/api/user/info", controller.user.userInfo);
   router.post("/api/user/edit", controller.user.editInfo);
   router.post("/api/user/login", controller.user.login);

@@ -12,4 +12,7 @@
 div {
   box-sizing: border-box;
 }
+.flex {
+  display: flex;
+}
 </style>

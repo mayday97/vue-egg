@@ -15,7 +15,7 @@ class HouseController extends BaseController {
    */
   async addHouse() {
     const { ctx, service } = this;
-
+    console.log(ctx.request.body);
     const ret = await ctx.service.house.house.addHouse(ctx.request.body);
     if (ret) {
       this.success("上传成功");
