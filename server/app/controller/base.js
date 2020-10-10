@@ -1,5 +1,5 @@
 /**
- * 公共controllera
+ * 公共controller
  */
 
 const { Controller } = require("egg");

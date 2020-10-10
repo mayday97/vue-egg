@@ -6,7 +6,7 @@ class CommomController extends BaseController {
    */
   async uploadFile() {
     const { ctx } = this;
-    let ret = ctx.service.commom.upload.saveFile(ctx.request.files[0]);
+    let ret = await ctx.service.commom.upload.saveFile(ctx.request.files[0]);
     this.success("chengg ");
   }
 }
