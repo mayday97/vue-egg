@@ -3,14 +3,13 @@ const Service = require("egg").Service;
 class HouseService extends Service {
   /**
    *  获取房产列表
-   *  @param {string} region
-   *  @param {string} sort  面积从大小；租金从高低
    */
-  async getHouseList({ region, sort }) {
-    const list = this.app.mysql.select("house", {
-      where: { region: region },
+  async getHouseList({ page }) {
+    const list = await this.app.mysql.select("house", {
+      offset: parseInt(page) * 20 - 20,
       limit: 20,
     });
+    return list;
   }
 
   /**
@@ -18,7 +17,7 @@ class HouseService extends Service {
    */
 
   async addHouse(params) {
-    const result = await this.app.mysql.insert("house", { title: params.title, region: params.region, address: params.address, area: params.area });
+    const result = await this.app.mysql.insert("house", { title: params.title, region: params.region, address: params.address, area: params.area, thumb: params.thumb });
     if (result.affectedRows === 1) {
       return true;
     } else {
