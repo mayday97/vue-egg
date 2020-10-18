@@ -1,0 +1,33 @@
+.my-layout {
+  height: 100vh;
+}
+.ant-layout {
+  height: 100%;
+}
+.my-layout .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.my-layout .trigger:hover {
+  color: #1890ff;
+}
+
+.my-layout .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.user-wrap {
+  cursor: pointer;
+  float: right;
+  margin-right: 24px;
+}
