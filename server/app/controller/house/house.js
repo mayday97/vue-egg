@@ -6,8 +6,12 @@ class HouseController extends BaseController {
    */
   async getList() {
     const { ctx } = this;
-    const list = ctx.service.house.house.getHouseList(ctx.query);
-    this.success({ id: 1, title: "测试" });
+    const list = await ctx.service.house.house.getHouseList(ctx.request.body);
+    if (list && list.length != 0) {
+      this.success(list);
+    } else {
+      this.error("没有数据");
+    }
   }
 
   /**

@@ -37,8 +37,7 @@
       <el-upload
         action="http://127.0.0.1:7001/api/commom/upload"
         list-type="picture-card"
-        :file-list="bannerImgList"
-        multiple
+        :file-list="bannerImg"
         :on-preview="handlePictureCardPreview"
         :on-success="handleUploadSuccess"
         :on-remove="handleRemove"
@@ -80,30 +79,39 @@ export default {
       typeList: [],
       status: "",
 
-      bannerImgList: [],
+      bannerImg: [],
       dialogImageUrl: "",
       dialogVisible: false,
     };
   },
-  created() {
-    console.log(new Date().toString());
-  },
+  created() {},
   methods: {
     handleUploadSuccess(response, file, fileList) {
+      //图片上传成功
       console.log(fileList);
+      this.bannerImg = fileList;
     },
 
     handleRemove(file, fileList) {
+      //删除上传的图片
       console.log(file, fileList);
     },
 
     handlePictureCardPreview(file) {
+      //点击预览
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     },
 
     async add() {
-      let ret = await addHouse({ title: this.title, region: this.region, address: this.address, area: this.area });
+      const imgUrl = this.bannerImg[0].response.data;
+      let ret = await addHouse({ title: this.title, region: this.region, address: this.address, area: this.area, thumb: imgUrl });
+      if (ret.code === 1) {
+        this.$message("添加成功");
+        setTimeout(() => {
+          this.$router.go(-1);
+        }, 1500);
+      }
     },
 
     handleCancle() {
