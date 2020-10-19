@@ -1,4 +1,9 @@
-const BaseController = require("./base");
+/*
+ * @Author: xiaoyu
+ * @Date: 2020-09-10 11:03:32
+ * @LastEditTime: 2020-10-19 15:17:37
+ */
+const BaseController = require("../base");
 
 class UserController extends BaseController {
   async userInfo() {

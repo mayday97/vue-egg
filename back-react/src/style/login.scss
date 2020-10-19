@@ -1,0 +1,21 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("~@/images/login-bg.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 200px;
+  .login-form-wrap {
+    background-color: #fff;
+    width: 500px;
+    height: 400px;
+    margin: 0 auto;
+    padding: 24px;
+    border-radius: 6px;
+    .login-title {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  }
+}

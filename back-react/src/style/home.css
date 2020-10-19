@@ -31,3 +31,14 @@
   float: right;
   margin-right: 24px;
 }
+
+.my-content {
+  /* margin: 88px 16px 24px 16px; */
+  margin: 24px 16px;
+  padding: 24px 16px;
+}
+.my-header {
+  /* position: fixed; */
+  left: 200px;
+  right: 0;
+}
