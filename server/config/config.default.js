@@ -1,3 +1,8 @@
+/*
+ * @Author: xiaoyu
+ * @Date: 2020-09-10 11:03:32
+ * @LastEditTime: 2020-10-20 15:54:31
+ */
 /* eslint valid-jsdoc: "off" */
 
 "use strict";
@@ -34,6 +39,10 @@ module.exports = (appInfo) => {
   config.cors = {
     origin: "*",
     allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH",
+  };
+
+  config.jwt = {
+    secret: "xiaoyu",
   };
 
   // config.cluster = {

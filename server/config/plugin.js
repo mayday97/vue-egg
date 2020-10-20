@@ -1,4 +1,9 @@
-'use strict';
+/*
+ * @Author: xiaoyu
+ * @Date: 2020-09-10 11:03:32
+ * @LastEditTime: 2020-10-20 17:01:25
+ */
+"use strict";
 
 /** @type Egg.EggPlugin */
 module.exports = {
@@ -7,14 +12,19 @@ module.exports = {
   //   enable: true,
   // }
 
+  jwt: {
+    enable: true,
+    package: "egg-jwt",
+  },
+
   // 跨域配置
   cors: {
     enable: true,
-    package: 'egg-cors',
+    package: "egg-cors",
   },
-  
-  mysql:{
+
+  mysql: {
     enable: true,
-    package: 'egg-mysql',
+    package: "egg-mysql",
   },
 };

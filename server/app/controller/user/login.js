@@ -1,7 +1,7 @@
 /*
  * @Author: xiaoyu
  * @Date: 2020-10-19 15:13:24
- * @LastEditTime: 2020-10-19 15:43:17
+ * @LastEditTime: 2020-10-20 17:08:00
  */
 const BaseController = require("../base");
 class UserLogin extends BaseController {
@@ -15,21 +15,8 @@ class UserLogin extends BaseController {
     } else if (ret === "errorpw") {
       this.error("密码错误");
     } else {
-      this.success("登录成功");
+      this.success(ret);
     }
-
-    // let userInfo = ctx.request.body;
-    // let ret = await this.app.mysql.get("user", { name: userInfo.account });
-    // console.log(ret);
-    // if (!ret) {
-    //   //无此用户
-    //   this.error("无此用户");
-    // } else if (ret && ret.password === userInfo.password) {
-    //   this.success("登录成功");
-    // } else {
-    //   //
-    //   this.error("密码错误");
-    // }
   }
 }
 
