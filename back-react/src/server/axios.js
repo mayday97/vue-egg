@@ -1,17 +1,17 @@
 /*
  * @Author: xiaoyu
  * @Date: 2020-10-19 14:48:10
- * @LastEditTime: 2020-10-19 15:41:43
+ * @LastEditTime: 2020-10-21 14:41:42
  */
 import axios from "axios";
 import QS from "qs";
 
 // 环境的切换
-if (process.env.NODE_ENV == "development") {
+if (process.env.NODE_ENV === "development") {
   axios.defaults.baseURL = "http://localhost:7001/";
-} else if (process.env.NODE_ENV == "debug") {
+} else if (process.env.NODE_ENV === "debug") {
   axios.defaults.baseURL = "";
-} else if (process.env.NODE_ENV == "production") {
+} else if (process.env.NODE_ENV === "production") {
   axios.defaults.baseURL = "http://api.123dailu.com/";
 }
 

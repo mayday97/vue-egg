@@ -1,7 +1,7 @@
 /*
  * @Author: xiaoyu
  * @Date: 2020-10-19 09:46:57
- * @LastEditTime: 2020-10-19 14:40:09
+ * @LastEditTime: 2020-10-21 17:11:53
  */
 import React, { Component } from "react";
 
@@ -12,6 +12,7 @@ import { MenuUnfoldOutlined, MenuFoldOutlined, FundOutlined, AppstoreOutlined, B
 import { Switch, Route, Redirect } from "react-router-dom";
 import DataBoard from "@/pages/dataBoard";
 import ShopList from "@/pages/shop/list";
+import ShopEdit from "@/pages/shop/edit";
 import Order from "@/pages/order";
 import Users from "@/pages/users";
 
@@ -89,10 +90,11 @@ class home extends Component {
 
             <Content className="my-content site-layout-background">
               <Switch>
-                <Route path="/home/databoard" component={DataBoard}></Route>
-                <Route path="/home/shop" component={ShopList}></Route>
-                <Route path="/home/order" component={Order}></Route>
-                <Route path="/home/users" component={Users}></Route>
+                <Route path="/home/databoard" exact component={DataBoard}></Route>
+                <Route path="/home/shop" exact component={ShopList}></Route>
+                <Route path="/home/shop/edit" exact component={ShopEdit}></Route>
+                <Route path="/home/order" exact component={Order}></Route>
+                <Route path="/home/users" exact component={Users}></Route>
                 <Redirect from="/*" to="/home/databoard" />
               </Switch>
             </Content>

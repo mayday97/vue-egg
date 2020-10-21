@@ -1,0 +1,14 @@
+.goods-list {
+  height: 100%;
+  overflow: auto;
+  .list-header {
+    margin-bottom: 10px;
+    float: right;
+    .search-list {
+      margin-right: 20px;
+    }
+  }
+  .operate-btn {
+    margin: 5px;
+  }
+}

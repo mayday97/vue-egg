@@ -1,22 +1,15 @@
+/*
+ * @Author: xiaoyu
+ * @Date: 2020-10-21 14:13:27
+ * @LastEditTime: 2020-10-21 14:16:42
+ */
 const Service = require("egg").Service;
 
-class HouseService extends Service {
-  /**
-   *  获取房产列表
-   */
-  async getHouseList({ page }) {
-    const list = await this.app.mysql.select("house", {
-      offset: parseInt(page) * 20 - 20,
-      limit: 20,
-    });
-    return list;
-  }
-
+class AddService extends Service {
   /**
    * 添加房产
    */
-
-  async addHouse(params) {
+  async addGood(params) {
     const result = await this.app.mysql.insert("house", { title: params.title, region: params.region, address: params.address, area: params.area, thumb: params.thumb });
     if (result.affectedRows === 1) {
       return true;
@@ -26,4 +19,4 @@ class HouseService extends Service {
   }
 }
 
-module.exports = HouseService;
+module.exports = AddService;
