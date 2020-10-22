@@ -1,11 +1,13 @@
 /*
  * @Author: xiaoyu
  * @Date: 2020-10-19 09:46:57
- * @LastEditTime: 2020-10-21 17:04:50
+ * @LastEditTime: 2020-10-22 16:21:20
  */
 import React, { Component } from "react";
 import "@/style/shop/list.scss";
 import { Table, Button, Image, Input } from "antd";
+import { apiShopList } from "@/server/api";
+
 const { Search } = Input;
 
 const columns = [
@@ -14,25 +16,32 @@ const columns = [
     dataIndex: "thumb",
     width: 150,
     align: "center",
-    render: (thumb) => <Image width={120} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />,
+    render: (thumb) => <Image width={120} height={120} src={thumb} />,
   },
   {
     title: "标题",
     dataIndex: "title",
-    width: 200,
     align: "center",
   },
   {
     title: "价格",
     dataIndex: "price",
-    width: 150,
+    width: 100,
     align: "center",
   },
   {
     title: "库存",
-    dataIndex: "count",
+    dataIndex: "stock",
     align: "center",
+    width: 100,
   },
+  {
+    title: "状态",
+    dataIndex: "status",
+    align: "center",
+    width: 100,
+  },
+
   {
     title: "操作",
     dataIndex: "operate",
@@ -40,9 +49,9 @@ const columns = [
     align: "center",
     render: (operate) => (
       <div>
-        {operate.map((item) => {
+        {operate.map((item, index) => {
           return (
-            <Button className="operate-btn" style={{ color: item.color }}>
+            <Button className="operate-btn" key={index} style={{ color: item.color }}>
               {item.name}
             </Button>
           );
@@ -52,28 +61,40 @@ const columns = [
   },
 ];
 
-const data = [];
-for (let i = 0; i < 100; i++) {
-  data.push({
-    key: i,
-    title: `Edward King ${i}`,
-    price: 32,
-    count: `${i}`,
-    operate: [
-      { name: "上架", color: "#1890FF" },
-      { name: "下架", color: "#FF4D4F" },
-      { name: "修改", color: "#CC0710" },
-      { name: "上架", color: "#1890FF" },
-      { name: "下架", color: "#FF4D4F" },
-      { name: "修改", color: "#CC0710" },
-    ],
-  });
-}
-
 class list extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      shopList: [],
+    };
+  }
+
   onSearch = (value) => {
     console.log(value);
   };
+
+  async getShopList() {
+    let res = await apiShopList({ page: 1 });
+    if (res.code === 1) {
+      let arr = res.data.map((item) => {
+        let obj = {
+          ...item,
+          operate: [
+            { name: "上架", color: "#1890FF" },
+            { name: "下架", color: "#FF4D4F" },
+            { name: "修改", color: "#CC0710" },
+          ],
+        };
+        return obj;
+      });
+      this.setState({
+        shopList: [...this.state.shopList, ...arr],
+      });
+    }
+  }
+  componentDidMount() {
+    this.getShopList();
+  }
 
   render() {
     return (
@@ -84,7 +105,7 @@ class list extends Component {
             添加商品
           </Button>
         </div>
-        <Table columns={columns} dataSource={data} pagination={{ pageSize: 20 }} scroll={{ y: 600 }} bordered />
+        <Table rowKey="id" columns={columns} dataSource={this.state.shopList} pagination={{ pageSize: 20 }} scroll={{ y: 600 }} bordered />
       </div>
     );
   }
