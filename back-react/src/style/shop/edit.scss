@@ -14,5 +14,17 @@
         text-align: right;
       }
     }
+
+    .rich-text {
+      height: 500px;
+      background-color: antiquewhite;
+    }
+
+    .btns {
+      margin-top: 20px;
+      .confirm-btn {
+        margin-right: 20px;
+      }
+    }
   }
 }

@@ -1,10 +1,10 @@
 /*
  * @Author: xiaoyu
  * @Date: 2020-10-22 17:19:54
- * @LastEditTime: 2020-10-22 17:39:23
+ * @LastEditTime: 2020-10-23 16:17:53
  */
 import React, { Component } from "react";
-import { Upload, Modal } from "antd";
+import { Upload, Modal, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 function getBase64(file) {
@@ -17,31 +17,16 @@ function getBase64(file) {
 }
 
 export default class UploadImg extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
-    maxNum: 4, //可以上传几个文件
+    multiple: this.props.multiple, //是否可以选择多张
+    maxNum: this.props.maxNum, //可以上传几个文件
     previewVisible: false,
     previewImage: "",
     previewTitle: "",
-    fileList: [
-      {
-        uid: "-1",
-        name: "image.png",
-        status: "done",
-        url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-      },
-      {
-        uid: "-xxx",
-        percent: 50,
-        name: "image.png",
-        status: "uploading",
-        url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-      },
-      {
-        uid: "-5",
-        name: "image.png",
-        status: "error",
-      },
-    ],
+    fileList: [], //上传的文件列表
   };
 
   handleCancel = () => this.setState({ previewVisible: false });
@@ -58,7 +43,32 @@ export default class UploadImg extends Component {
     });
   };
 
-  handleChange = ({ fileList }) => this.setState({ fileList });
+  handleChange = ({ fileList, event }) => {
+    //控制一次上传的个数
+    if (fileList.length > this.state.maxNum) {
+      fileList.splice(this.state.maxNum - 1, fileList.length - this.state.maxNum);
+      console.log(`最多上传${this.state.maxNum}张图片`);
+      message.warning(`最多上传${this.state.maxNum}张图片`);
+    }
+    let res = fileList.map((item) => {
+      if (item.response && item.response.code === 1) {
+        item.status = "done";
+      } else {
+        item.status = "error";
+      }
+      return item;
+    });
+    this.setState({ fileList: res });
+    this.filterImgList(res);
+  };
+
+  filterImgList = (list) => {
+    let arr1 = list.filter((item) => item.status === "done");
+    let str2 = arr1.map((item) => {
+      return item.response.data;
+    });
+    this.props.getImgList(str2.toString());
+  };
 
   render() {
     const { previewVisible, previewImage, fileList, previewTitle } = this.state;
@@ -70,7 +80,15 @@ export default class UploadImg extends Component {
     );
     return (
       <>
-        <Upload action="https://www.mocky.io/v2/5cc8019d300000980a055e76" listType="picture-card" fileList={fileList} onPreview={this.handlePreview} onChange={this.handleChange}>
+        <Upload
+          action="http://localhost:7001/api/commom/upload"
+          accept="image/*"
+          multiple={this.state.multiple}
+          listType="picture-card"
+          fileList={fileList}
+          onPreview={this.handlePreview}
+          onChange={this.handleChange}
+        >
           {fileList.length >= this.state.maxNum ? null : uploadButton}
         </Upload>
         <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={this.handleCancel}>

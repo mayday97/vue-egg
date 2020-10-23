@@ -36,6 +36,7 @@
   /* margin: 88px 16px 24px 16px; */
   margin: 24px 16px;
   padding: 24px 16px;
+  min-height: auto;
 }
 .my-header {
   /* position: fixed; */

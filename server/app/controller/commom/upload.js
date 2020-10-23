@@ -1,3 +1,8 @@
+/*
+ * @Author: xiaoyu
+ * @Date: 2020-09-28 14:42:51
+ * @LastEditTime: 2020-10-23 14:15:29
+ */
 const BaseController = require("../base");
 
 class CommomController extends BaseController {

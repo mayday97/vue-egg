@@ -1,7 +1,13 @@
+/*
+ * @Author: xiaoyu
+ * @Date: 2020-09-28 15:23:58
+ * @LastEditTime: 2020-10-23 13:47:18
+ */
 const Service = require("egg").Service;
 const fs = require("fs");
 const path = require("path");
 const pump = require("mz-modules/pump");
+const { dirname } = require("path");
 
 class UploadService extends Service {
   /**
@@ -25,7 +31,7 @@ class UploadService extends Service {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir); //如果没有目录 则创建
     try {
       await fs.writeFileSync(src, bufferData);
-      return src; //返回图片地址
+      return `http://127.0.0.1:7001/public/upload/${dirName}/${filename}`; //返回图片地址
     } catch (e) {
       console.log(e);
       return -1;

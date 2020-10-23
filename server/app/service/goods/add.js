@@ -1,16 +1,17 @@
 /*
  * @Author: xiaoyu
  * @Date: 2020-10-21 14:13:27
- * @LastEditTime: 2020-10-21 14:16:42
+ * @LastEditTime: 2020-10-23 16:49:34
  */
 const Service = require("egg").Service;
 
 class AddService extends Service {
   /**
-   * 添加房产
+   * 添加商品
    */
   async addGood(params) {
-    const result = await this.app.mysql.insert("house", { title: params.title, region: params.region, address: params.address, area: params.area, thumb: params.thumb });
+    const result = await this.app.mysql.insert("goods", { title: params.title, price: params.price, stock: params.stock, thumb: params.thumb, images: params.images });
+    console.log(result);
     if (result.affectedRows === 1) {
       return true;
     } else {

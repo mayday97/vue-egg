@@ -1,7 +1,7 @@
 /*
  * @Author: xiaoyu
  * @Date: 2020-10-19 09:46:57
- * @LastEditTime: 2020-10-22 16:21:20
+ * @LastEditTime: 2020-10-23 17:10:46
  */
 import React, { Component } from "react";
 import "@/style/shop/list.scss";
@@ -11,6 +11,12 @@ import { apiShopList } from "@/server/api";
 const { Search } = Input;
 
 const columns = [
+  {
+    title: "编号",
+    dataIndex: "id",
+    width: 100,
+    align: "center",
+  },
   {
     title: "封面图",
     dataIndex: "thumb",
